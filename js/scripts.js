@@ -1,55 +1,47 @@
-let pokemonList = [];
-
-let pokemon1 = [
-  name: 'Eevee'
-  height: 0.3
-  type: 'normal'
-  ]
-
-  let pokemon2 = [
+let pokemonList = [
+  {
+    name: 'Eevee'
+    height: 0.3
+    type: ['normal']
+  },
+  {
     name: 'Vaporeaon'
     height: 1
-    type: 'water'
-  ]
-
-  let pokemon3 = [
+    type: ['water']
+  },
+  {
     name: 'Jolteon'
     height: 0.8
-    type: 'electric'
-  ]
-
-  let pokemon4 = [
+    type: ['electric']
+  },
+  {
     name: 'Flareon'
     height: 0.9
-    type: 'fire'
-  ]
-
-  let pokemon5 = [
+    type: ['fire']
+  },
+  {
     name: 'Espeon'
     height: 0.9
-    type: 'psychic'
-  ]
-
-  let pokemon6 = [
+    type: ['psychic']
+  },
+  {
     name: 'Umbreon'
     height: 1
-    type: 'dark'
-  ]
-
-  let pokemon7 = [
+    type: ['dark']
+  },
+  {
     name: 'Leafeon'
     height: 1
-    type: 'grass'
-  ]
-
-  let pokemon8 = [
+    type: ['grass']
+  },
+  {
     name: 'Glaceon'
     height: 0.8
-    type: 'ice'
-  ]
-
-  let pokemon9 = [
+    type: ['ice']
+  },
+  {
     name: 'Sylveon'
     height: 1
-    type: 'fairy'
-  ]
+    type: ['fairy']
+  },
+];
