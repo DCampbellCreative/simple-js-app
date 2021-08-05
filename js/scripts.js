@@ -7,7 +7,7 @@ let pokemonList = [
   {
     name: 'Vaporeaon',
     height: 1,
-    type: ['water']
+    type: ['water'],
   },
   {
     name: 'Jolteon',
@@ -45,3 +45,13 @@ let pokemonList = [
     type: ['fairy']
   },
 ];
+
+//lists pokemon and thier heights and highlights small pokemon
+for (let i=0; i < pokemonList.length; i++){
+  if (pokemonList[i].height < 1) {
+    document.write(pokemonList[i].name + ' (Height: ' + pokemonList[i].height + ')' + ' ' + pokemonList[i].name + ' is tiny! ' + '<br>' )
+  }
+  else {
+    document.write(pokemonList[i].name + ' (Height: ' + pokemonList[i].height + ')' + '<br>')
+  }
+}
