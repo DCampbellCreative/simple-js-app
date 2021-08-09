@@ -1,3 +1,4 @@
+let pokemonRepository = (function () {
 let pokemonList = [
   {
     name: 'Eevee',
@@ -46,9 +47,24 @@ let pokemonList = [
   },
 ];
 
-//lists pokemon and thier heights and highlights small pokemon
-// for (let i=0; i < pokemonList.length; i++){
-pokemonList.forEach(function(pokemon) {
+function add(pokemon) {
+    pokemonList.push(pokemon);
+  }
+
+  function getAll() {
+    return pokemonList;
+  }
+
+  return {
+    add: add,
+    getAll: getAll
+  };
+})();
+
+console.log(pokemonRepository.getAll());
+
+//gets names of pokemon from pokemonRepository and lists pokemon and thier heights and highlights small pokemon
+pokemonRepository.getAll().forEach(function(pokemon) {
   if (pokemon.height < 1) {
     document.write(pokemon.name + ' (Height: ' + pokemon.height + ')' + ' ' + pokemon.name + ' is tiny! ' + '<br>' )
   }
