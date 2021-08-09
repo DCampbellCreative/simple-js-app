@@ -47,11 +47,12 @@ let pokemonList = [
 ];
 
 //lists pokemon and thier heights and highlights small pokemon
-for (let i=0; i < pokemonList.length; i++){
-  if (pokemonList[i].height < 1) {
-    document.write(pokemonList[i].name + ' (Height: ' + pokemonList[i].height + ')' + ' ' + pokemonList[i].name + ' is tiny! ' + '<br>' )
+// for (let i=0; i < pokemonList.length; i++){
+pokemonList.forEach(function(pokemon) {
+  if (pokemon.height < 1) {
+    document.write(pokemon.name + ' (Height: ' + pokemon.height + ')' + ' ' + pokemon.name + ' is tiny! ' + '<br>' )
   }
   else {
-    document.write(pokemonList[i].name + ' (Height: ' + pokemonList[i].height + ')' + '<br>')
+    document.write(pokemon.name + ' (Height: ' + pokemon.height + ')' + '<br>')
   }
-}
+});
