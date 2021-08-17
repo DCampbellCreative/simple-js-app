@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap');
+
+.pokemon_list {
+  list-style-type: none
+}
+
+.pokemon_button {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  font-size: 20px;
+  width: 160px;
+  height: 60px;
+  text-align: center;
+  text-decoration: none;
+  margin: 5px auto;
+  border: 5px solid gray;
+  border-radius: 6px;
+  color: black;
+  background-color: #00cccc;
+  transition: 0.3s
+}
+
+.pokemon_button:hover {
+  opacity: .75;
+  color: black;
+}
