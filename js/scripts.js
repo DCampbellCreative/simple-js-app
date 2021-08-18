@@ -46,10 +46,10 @@ let pokemonRepository = (function () {
       type: ['fairy']
     },
     {
-    name: 'Pikachu',
-    height: .3,
-    type: ['electric'],
-  }
+      name: 'Pikachu',
+      height: .3,
+      type: ['electric'],
+    }
   ];
 
   function add(pokemon) {
@@ -60,14 +60,16 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-//adds pokemon to pokedex
+  //adds pokemon to pokedex
   function addListItem(pokemon) {
     let pokemonList = document.querySelector('.pokemon_list');
     let listItem = document.createElement('li');
     let button = document.createElement('button');
     button.classList.add('pokemon_button');
     button.innerText = pokemon.name;
-    addEventListener("click", showDetails);
+    button.addEventListener("click", function(){
+      showDetails(pokemon)
+    });
     listItem.appendChild(button);
     pokemonList.appendChild(listItem);
   }
