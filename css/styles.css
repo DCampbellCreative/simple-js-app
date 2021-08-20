@@ -7,6 +7,7 @@
 .pokemon_button {
   font-family: "Atkinson Hyperlegible", sans-serif;
   font-size: 20px;
+
   width: 160px;
   height: 60px;
   text-align: center;
@@ -16,7 +17,8 @@
   border-radius: 6px;
   color: black;
   background-color: #00cccc;
-  transition: 0.3s
+  transition: 0.3s;
+  text-transform: capitalize;
 }
 
 .pokemon_button:hover {
