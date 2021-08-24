@@ -25,3 +25,67 @@
   opacity: .75;
   color: black;
 }
+
+#modal_container {
+  position: fixed;
+  padding: 20px;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+
+  /* to show it above other content */
+  z-index: 999;
+
+  /* to allow scrolling if the screen is not high enough*/
+  overflow: auto;
+
+  /* this is used to center the modal */
+  display: grid;
+  text-align: center;
+}
+
+.modal {
+  font-family: "Atkinson Hyperlegible", sans-serif;
+  text-transform: capitalize;
+  border: 5px solid gray;
+  margin: auto;
+  display: inline-block;
+  box-sizing: border-box;
+  background: #fff;
+  padding: 15px;
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+}
+
+.modal_close {
+  float: right;
+  -webkit-appearance: none;
+  border: 1px solid black;
+  border-radius: 2px;
+  background: none;
+  color: #777;
+  text-decoration: underline;
+}
+
+.modal_close:hover {
+  opacity: .5;
+}
+.modal h1 {
+  margin-top: 0;
+}
+
+.modal p {
+  margin-bottom: 0;
+}
+
+#modal_container {
+  display: none;
+}
+
+#modal_container.is_visible {
+  display: block
+}

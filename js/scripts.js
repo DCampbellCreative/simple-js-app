@@ -1,7 +1,16 @@
+//questions: should show modal function not be outside the IIFE
+//why don't I have to put the parenthesis after hideModal function in closeButtonElement
+//why does <p> not work inside content text, can't use html and select pokemon height
+//adding line breaks in template literals,
+//loading pokemon type
+//what's difference between load list and load details function
+//why can't i add border on modal or modal container, do i need to normalize css or is it just browser activity
+
 let pokemonRepository = (function () {
   let pokemonList = [];
 
   let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let modalContainer = document.querySelector('#modal_container');
 
   function add(pokemon) {
     pokemonList.push(pokemon);
@@ -11,7 +20,59 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
+//shows modal with pokemon info
+function showModal(pokemon) {
 
+modalContainer.innerHTML = '';
+
+  let modal = document.createElement('div');
+  modal.classList.add('modal');
+
+  let closeButtonElement = document.createElement('button');
+  closeButtonElement.classList.add('modal_close');
+  closeButtonElement.innerText = 'Close'
+  closeButtonElement.addEventListener('click', hideModal);
+
+  let titleElement = document.createElement('h1');
+  titleElement.innerText = pokemon.name;
+
+  let contentElement = document.createElement('p');
+  contentElement.innerHTML =
+  `height: ${pokemon.height}
+  types: ${pokemon.types}`;
+
+  let pokemonSprite =  document.createElement('img');
+  pokemonSprite.src = pokemon.imageUrl;
+
+  modal.appendChild(closeButtonElement);
+  modal.appendChild(titleElement);
+  modal.appendChild(contentElement);
+  modal.appendChild(pokemonSprite);
+  modalContainer.appendChild(modal);
+
+  modalContainer.classList.add('is_visible');
+
+  function hideModal(){
+    modalContainer.classList.remove('is_visible');
+  }
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalContainer.classList.contains('is_visible')){
+      hideModal();
+    }
+  });
+
+  modalContainer.addEventListener('click', (e) => {
+    let target = e.target;
+    if (target === modalContainer) {
+      hideModal();
+    }
+  });
+
+  document.querySelector('#show_modal').addEventListener('click', () => {
+    showModal();
+  });
+}
   //adds pokemon to pokedex
   function addListItem(pokemon) {
     let pokemonList = document.querySelector('.pokemon_list');
@@ -29,11 +90,11 @@ let pokemonRepository = (function () {
 //shows details when user clicks pokemon
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-    console.log(pokemon);
+    showModal(pokemon);
   });
 }
 
-//loads list of pokemon from API
+//fetchs pokemon details from API
   function loadList() {
     return fetch(apiUrl).then(function (response) {
       return response.json();
@@ -43,6 +104,7 @@ let pokemonRepository = (function () {
           name: item.name,
           detailsUrl: item.url,
           height: item.height,
+          types: item.types,
         };
         add(pokemon);
       });
@@ -57,10 +119,10 @@ let pokemonRepository = (function () {
     return fetch(url).then(function (response) {
       return response.json();
     }).then(function (details) {
-      // Now we add the details to the item
+      //add the details to the item
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
-      item.types = details.types;
+      item.types = details.types.slot.type;
     }).catch(function (e) {
       console.error(e);
     });
