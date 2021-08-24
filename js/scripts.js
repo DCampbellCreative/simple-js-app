@@ -38,10 +38,11 @@ modalContainer.innerHTML = '';
 
   let contentElement = document.createElement('p');
   contentElement.innerHTML =
-  `height: ${pokemon.height}
-  types: ${pokemon.types}`;
+  `height: ${pokemon.height}</br>
+  type: ${pokemon.types.join(', ')}`;
 
   let pokemonSprite =  document.createElement('img');
+  pokemonSprite.classList.add('pokemon_sprite');
   pokemonSprite.src = pokemon.imageUrl;
 
   modal.appendChild(closeButtonElement);
@@ -103,8 +104,6 @@ modalContainer.innerHTML = '';
         let pokemon = {
           name: item.name,
           detailsUrl: item.url,
-          height: item.height,
-          types: item.types,
         };
         add(pokemon);
       });
@@ -120,9 +119,10 @@ modalContainer.innerHTML = '';
       return response.json();
     }).then(function (details) {
       //add the details to the item
+      const pokemonType = details.types.map((type) => type.type.name);
       item.imageUrl = details.sprites.front_default;
       item.height = details.height;
-      item.types = details.types.slot.type;
+      item.types = pokemonType;
     }).catch(function (e) {
       console.error(e);
     });

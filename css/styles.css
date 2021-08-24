@@ -29,6 +29,7 @@
 #modal_container {
   position: fixed;
   padding: 20px;
+
   box-sizing: border-box;
   top: 0;
   left: 0;
@@ -50,7 +51,8 @@
 .modal {
   font-family: "Atkinson Hyperlegible", sans-serif;
   text-transform: capitalize;
-  border: 5px solid gray;
+  border: 10px solid black;
+  border-radius: 25px;
   margin: auto;
   display: inline-block;
   box-sizing: border-box;
@@ -65,7 +67,7 @@
   float: right;
   -webkit-appearance: none;
   border: 1px solid black;
-  border-radius: 2px;
+  border-radius: 10px;
   background: none;
   color: #777;
   text-decoration: underline;
@@ -88,4 +90,11 @@
 
 #modal_container.is_visible {
   display: block
+}
+
+.pokemon_sprite {
+  height: 200px;
+  border: 10px solid gray;
+  background-color: #00cccc;
+  padding: 0px;
 }
