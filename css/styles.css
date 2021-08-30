@@ -1,38 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&display=swap');
 
-.pokemon_list {
-  list-style-position: outside;
+.list-group {
   list-style-type: none;
   text-align: center;
 }
 
-.pokemon_button {
+.btn-primary {
   font-family: "Atkinson Hyperlegible", sans-serif;
   font-size: 20px;
   width: 160px;
   height: 60px;
   text-align: center;
-  list-style-type: none;
-  text-decoration: none;
   margin: 5px;
   border: 5px solid gray;
-  border-radius: 6px;
-  color: black;
   background-color: #00cccc;
   transition: 0.3s;
   text-transform: capitalize;
 }
 
-.pokemon_button:hover {
-  opacity: .75;
-  color: black;
-}
 
-.h1 {
+.display-4 {
   font-family: "Atkinson Hyperlegible", sans-serif;
-  font-size: 30px;
   text-align: center;
-  padding-left: 40px;
 }
 
 #modal_container {

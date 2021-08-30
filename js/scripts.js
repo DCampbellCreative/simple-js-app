@@ -12,8 +12,9 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
+  //creates page title
   let pokedex = document.createElement('div');
-  pokedex.classList.add('h1');
+  pokedex.classList.add('display-4');
   pokedex.innerText = 'Pokedex';
   pageTitle.appendChild(pokedex);
 
@@ -74,10 +75,11 @@ let pokemonRepository = (function () {
   }
   //adds pokemon to pokedex
   function addListItem(pokemon) {
-    let pokemonList = document.querySelector('.pokemon_list');
+    let pokemonList = document.querySelector('.list-group');
     let listItem = document.createElement('li');
     let button = document.createElement('button');
-    button.classList.add('pokemon_button');
+    listItem.classList.add('group-list-item');
+    button.classList.add('btn', 'btn-primary');
     button.innerText = pokemon.name;
     button.addEventListener("click", function(){
       showDetails(pokemon)
