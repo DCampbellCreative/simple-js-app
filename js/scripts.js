@@ -1,11 +1,3 @@
-//questions: should show modal function not be outside the IIFE
-//why don't I have to put the parenthesis after hideModal function in closeButtonElement
-//why does <p> not work inside content text, can't use html and select pokemon height
-//adding line breaks in template literals,
-//loading pokemon type
-//what's difference between load list and load details function
-//why can't i add border on modal or modal container, do i need to normalize css or is it just browser activity
-
 let pokemonRepository = (function () {
   let pokemonList = [];
 
@@ -20,60 +12,66 @@ let pokemonRepository = (function () {
     return pokemonList;
   }
 
-//shows modal with pokemon info
-function showModal(pokemon) {
+  let pokedex = document.createElement('div');
+  pokedex.classList.add('h1');
+  pokedex.innerText = 'Pokedex';
+  pageTitle.appendChild(pokedex);
 
-modalContainer.innerHTML = '';
 
-  let modal = document.createElement('div');
-  modal.classList.add('modal');
+  //shows modal with pokemon info
+  function showModal(pokemon) {
 
-  let closeButtonElement = document.createElement('button');
-  closeButtonElement.classList.add('modal_close');
-  closeButtonElement.innerText = 'Close'
-  closeButtonElement.addEventListener('click', hideModal);
+    modalContainer.innerHTML = '';
 
-  let titleElement = document.createElement('h1');
-  titleElement.innerText = pokemon.name;
+    let modal = document.createElement('div');
+    modal.classList.add('modal');
 
-  let contentElement = document.createElement('p');
-  contentElement.innerHTML =
-  `height: ${pokemon.height}</br>
-  type: ${pokemon.types.join(', ')}`;
+    let closeButtonElement = document.createElement('button');
+    closeButtonElement.classList.add('modal_close');
+    closeButtonElement.innerText = 'Close'
+    closeButtonElement.addEventListener('click', hideModal);
 
-  let pokemonSprite =  document.createElement('img');
-  pokemonSprite.classList.add('pokemon_sprite');
-  pokemonSprite.src = pokemon.imageUrl;
+    let titleElement = document.createElement('h1');
+    titleElement.innerText = pokemon.name;
 
-  modal.appendChild(closeButtonElement);
-  modal.appendChild(titleElement);
-  modal.appendChild(contentElement);
-  modal.appendChild(pokemonSprite);
-  modalContainer.appendChild(modal);
+    let contentElement = document.createElement('p');
+    contentElement.innerHTML =
+    `height: ${pokemon.height}</br>
+    type: ${pokemon.types.join(', ')}`;
 
-  modalContainer.classList.add('is_visible');
+    let pokemonSprite =  document.createElement('img');
+    pokemonSprite.classList.add('pokemon_sprite');
+    pokemonSprite.src = pokemon.imageUrl;
 
-  function hideModal(){
-    modalContainer.classList.remove('is_visible');
+    modal.appendChild(closeButtonElement);
+    modal.appendChild(titleElement);
+    modal.appendChild(contentElement);
+    modal.appendChild(pokemonSprite);
+    modalContainer.appendChild(modal);
+
+    modalContainer.classList.add('is_visible');
+
+    function hideModal(){
+      modalContainer.classList.remove('is_visible');
+    }
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalContainer.classList.contains('is_visible')){
+        hideModal();
+      }
+    });
+
+    modalContainer.addEventListener('click', (e) => {
+      let target = e.target;
+      if (target === modalContainer) {
+        hideModal();
+      }
+    });
+
+    document.querySelector('#show_modal').addEventListener('click', () => {
+      showModal();
+    });
   }
-
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalContainer.classList.contains('is_visible')){
-      hideModal();
-    }
-  });
-
-  modalContainer.addEventListener('click', (e) => {
-    let target = e.target;
-    if (target === modalContainer) {
-      hideModal();
-    }
-  });
-
-  document.querySelector('#show_modal').addEventListener('click', () => {
-    showModal();
-  });
-}
   //adds pokemon to pokedex
   function addListItem(pokemon) {
     let pokemonList = document.querySelector('.pokemon_list');
@@ -88,14 +86,14 @@ modalContainer.innerHTML = '';
     pokemonList.appendChild(listItem);
   }
 
-//shows details when user clicks pokemon
+  //shows details when user clicks pokemon
   function showDetails(pokemon) {
     loadDetails(pokemon).then(function () {
-    showModal(pokemon);
-  });
-}
+      showModal(pokemon);
+    });
+  }
 
-//fetchs pokemon details from API
+  //fetchs pokemon details from API
   function loadList() {
     return fetch(apiUrl).then(function (response) {
       return response.json();
@@ -112,7 +110,7 @@ modalContainer.innerHTML = '';
     })
   }
 
-//load details of pokemon from API
+  //load details of pokemon from API
   function loadDetails(item) {
     let url = item.detailsUrl;
     return fetch(url).then(function (response) {
@@ -139,8 +137,8 @@ modalContainer.innerHTML = '';
 })();
 
 pokemonRepository.loadList().then(function() {
-//displays pokemon in respository on DOM
-pokemonRepository.getAll().forEach(function(pokemon) {
-  pokemonRepository.addListItem(pokemon)
-});
+  //displays pokemon in respository on DOM
+  pokemonRepository.getAll().forEach(function(pokemon) {
+    pokemonRepository.addListItem(pokemon)
+  });
 });
