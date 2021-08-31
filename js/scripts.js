@@ -21,59 +21,83 @@ let pokemonRepository = (function () {
 
   //shows modal with pokemon info
   function showModal(pokemon) {
+    let modalBody = $('.modal-body');
+    let modalTitle = $('.modal-title');
+    let modalHeader = $('.modal-header');
 
-    modalContainer.innerHTML = '';
+    modalTitle.empty();
+    modalBody.empty();
 
-    let modal = document.createElement('div');
-    modal.classList.add('modal');
 
-    let closeButtonElement = document.createElement('button');
-    closeButtonElement.classList.add('modal_close');
-    closeButtonElement.innerText = 'Close'
-    closeButtonElement.addEventListener('click', hideModal);
 
-    let titleElement = document.createElement('h1');
-    titleElement.innerText = pokemon.name;
+    let nameElement =$('<h1>' + pokemon.name + '</h1>');
 
-    let contentElement = document.createElement('p');
-    contentElement.innerHTML =
-    `height: ${pokemon.height}</br>
-    type: ${pokemon.types.join(', ')}`;
+    let imageElement =$("<img class='modal-img' style='width:50%'>");
+    imageElement.attr('src', pokemon.imageUrl);
 
-    let pokemonSprite =  document.createElement('img');
-    pokemonSprite.classList.add('pokemon_sprite');
-    pokemonSprite.src = pokemon.imageUrl;
+    let heightElement =$('<p>' + 'height : ' + pokemon.height + '</p>');
 
-    modal.appendChild(closeButtonElement);
-    modal.appendChild(titleElement);
-    modal.appendChild(contentElement);
-    modal.appendChild(pokemonSprite);
-    modalContainer.appendChild(modal);
+    let typesElement =$('<p>' + 'types : ' + pokemon.types.join(', ') + '</p>');
 
-    modalContainer.classList.add('is_visible');
-
-    function hideModal(){
-      modalContainer.classList.remove('is_visible');
-    }
-
-    window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modalContainer.classList.contains('is_visible')){
-        hideModal();
-      }
-    });
-
-    modalContainer.addEventListener('click', (e) => {
-      let target = e.target;
-      if (target === modalContainer) {
-        hideModal();
-      }
-    });
-
-    document.querySelector('#show_modal').addEventListener('click', () => {
-      showModal();
-    });
+    
+    modalTitle.append(nameElement);
+    modalBody.append(imageElement);
+    modalBody.append(heightElement);
+    modalBody.append(typesElement);
   }
-  //adds pokemon to pokedex
+    //
+    // modalContainer.innerHTML = '';
+    //
+    // let modal = document.createElement('div');
+    // modal.classList.add('modal');
+    //
+    // let closeButtonElement = document.createElement('button');
+    // closeButtonElement.classList.add('modal_close');
+    // closeButtonElement.innerText = 'Close'
+    // closeButtonElement.addEventListener('click', hideModal);
+    //
+    // let titleElement = document.createElement('h1');
+    // titleElement.innerText = pokemon.name;
+    //
+    // let contentElement = document.createElement('p');
+    // contentElement.innerHTML =
+    // `height: ${pokemon.height}</br>
+    // type: ${pokemon.types.join(', ')}`;
+    //
+    // let pokemonSprite =  document.createElement('img');
+    // pokemonSprite.classList.add('pokemon_sprite');
+    // pokemonSprite.src = pokemon.imageUrl;
+    //
+    // modal.appendChild(closeButtonElement);
+    // modal.appendChild(titleElement);
+    // modal.appendChild(contentElement);
+    // modal.appendChild(pokemonSprite);
+    // modalContainer.appendChild(modal);
+    //
+  //   modalContainer.classList.add('is_visible');
+  //
+  //   function hideModal(){
+  //     modalContainer.classList.remove('is_visible');
+  //   }
+  //
+  //   window.addEventListener('keydown', (e) => {
+  //     if (e.key === 'Escape' && modalContainer.classList.contains('is_visible')){
+  //       hideModal();
+  //     }
+  //   });
+  //
+  //   modalContainer.addEventListener('click', (e) => {
+  //     let target = e.target;
+  //     if (target === modalContainer) {
+  //       hideModal();
+  //     }
+  //   });
+  //
+  //   document.querySelector('#show_modal').addEventListener('click', () => {
+  //     showModal();
+  //   });
+  // }
+  // //adds pokemon to pokedex
   function addListItem(pokemon) {
     let pokemonList = document.querySelector('.list-group');
     let listItem = document.createElement('li');
@@ -81,9 +105,10 @@ let pokemonRepository = (function () {
     listItem.classList.add('group-list-item');
     button.classList.add('btn', 'btn-primary');
     button.innerText = pokemon.name;
-    button.addEventListener("click", function(){
-      showDetails(pokemon)
-    });
+
+    // button.addEventListener("click", function(){
+    //   showDetails(pokemon)
+    // });
     listItem.appendChild(button);
     pokemonList.appendChild(listItem);
   }
